@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вход</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Вход в систему</h1>
+    <form id="loginForm" method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        <div>
+            <label for="username">Имя пользователя:</label>
+            <input type="text" name="username" id="username" required>
+        </div>
+        <div>
+            <label for="password">Пароль:</label>
+            <input type="password" name="password" id="password" required>
+        </div>
+        <button type="submit">Войти</button>
+    </form>
+
+    <div class="reg">
+        <p>Нет аккаунта? <a href="{% url 'register' %}">Зарегистрироваться</a></p>
+    </div>
+
+    <!-- Модальное окно для сообщений -->
+    <div id="modal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <span id="modalClose" class="close">&times;</span>
+            <p id="modalMessage"></p>
+            <a href="{% url 'schema-swagger-ui' %}">Перейти в Swagger API Docs</a>
+        </div>
+    </div>
+
+    <script src="{% static 'js/login.js' %}"></script>
+</body>
+</html>
